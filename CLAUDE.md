@@ -12,22 +12,20 @@ SubDown 是一個 YouTube 字幕下載與語音轉錄工具。核心功能：
 ## 常用指令
 
 ```bash
-# 建立環境
-uv venv .venv
-source .venv/bin/activate
-uv pip install -r requirements.txt
+# 安裝依賴
+uv sync
 
 # 命令列工具（推薦）
-python download.py "https://www.youtube.com/watch?v=xxxxx"
-python download.py "https://www.youtube.com/watch?v=xxxxx" -o output.txt
-python download.py "https://www.youtube.com/watch?v=xxxxx" -m medium  # 較快的模型
-python download.py "https://www.youtube.com/watch?v=xxxxx" --skip-subs  # 跳過字幕直接轉錄
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx"
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -o output.txt
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -m medium  # 較快的模型
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" --skip-subs  # 跳過字幕直接轉錄
 
 # 互動式命令列
-python main.py
+uv run python main.py
 
 # Streamlit 網頁介面
-streamlit run app.py
+uv run streamlit run app.py
 ```
 
 ## 程式架構

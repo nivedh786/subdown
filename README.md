@@ -13,14 +13,17 @@
 
 ## 安裝
 
-確保已安裝 Python 3.8+ 和 FFmpeg：
+確保已安裝 Python 3.10+、[uv](https://docs.astral.sh/uv/) 和 FFmpeg：
 
 ```bash
 # 安裝 FFmpeg（Ubuntu/Debian）
 sudo apt install ffmpeg
 
-# 安裝 Python 套件
-uv pip install -r requirements.txt
+# 安裝 FFmpeg（macOS）
+brew install ffmpeg
+
+# 使用 uv 安裝依賴
+uv sync
 ```
 
 ## 使用方式
@@ -29,38 +32,38 @@ uv pip install -r requirements.txt
 
 基本使用：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ"
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx"
 ```
 
 指定輸出檔名：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ" -o samaltman.txt
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -o output.txt
 ```
 
 強制使用 Whisper 轉錄（跳過字幕下載）：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ" --skip-subs
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" --skip-subs
 ```
 
 使用較小的模型加快速度：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ" -m medium
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -m medium
 ```
 
 指定轉錄語言：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ" -l en
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -l en
 ```
 
 自訂字幕語言優先順序：
 ```bash
-python download.py "https://www.youtube.com/watch?v=2P27Ef-LLuQ" --sub-langs "en,ja,ko"
+uv run python download.py "https://www.youtube.com/watch?v=xxxxx" --sub-langs "en,ja,ko"
 ```
 
 ### 2. 互動式命令列
 
 ```bash
-python main.py
+uv run python main.py
 ```
 
 會詢問您輸入網址和檔名。
@@ -68,7 +71,7 @@ python main.py
 ### 3. Streamlit 網頁介面
 
 ```bash
-streamlit run app.py
+uv run streamlit run app.py
 ```
 
 在瀏覽器中開啟 http://localhost:8501 使用圖形介面。

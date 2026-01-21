@@ -11,9 +11,8 @@ env/
 *.vtt
 temp_sub.*
 
-# 輸出的轉錄文字檔（範例用）
+# 輸出的轉錄文字檔
 *.txt
-!requirements.txt
 
 # IDE
 .idea/

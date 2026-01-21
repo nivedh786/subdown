@@ -1,0 +1,14 @@
+[project]
+name = "subdown"
+version = "0.1.0"
+description = "YouTube 字幕下載與 Whisper AI 轉錄工具"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "yt-dlp>=2024.0.0",
+    "openai-whisper>=20231117",
+    "streamlit>=1.28.0",
+]
+
+[project.scripts]
+subdown = "download:main"
