@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# 暫存與輸出檔案
+*.mp3
+*.vtt
+temp_sub.*
+
+# 輸出的轉錄文字檔（範例用）
+*.txt
+!requirements.txt
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Whisper 模型快取
+~/.cache/whisper/
